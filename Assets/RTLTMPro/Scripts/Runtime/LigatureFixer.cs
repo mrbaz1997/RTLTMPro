@@ -116,10 +116,17 @@ namespace RTLTMPro
                         bool isBeforeWhiteSpace = Char32Utils.IsWhiteSpace(nextCharacter);
                         bool isAfterWhiteSpace = Char32Utils.IsWhiteSpace(previousCharacter);
                         bool isUnderline = characterAtThisIndex == '_';
-                        bool isSpecialPunctuation = characterAtThisIndex == '.' ||
-                                                    characterAtThisIndex == '،' ||
-                                                    characterAtThisIndex == '؛';
+                        bool isSpecialPunctuation = characterAtThisIndex is '.' or '،' or '؛';
 
+                        bool isAfterNumber = Char32Utils.IsNumber(previousCharacter, preserveNumbers, aramaicScript);
+                        bool isBeforeNumber = Char32Utils.IsNumber(nextCharacter, preserveNumbers, aramaicScript);
+                        bool isNumberSeparatorCharacter = characterAtThisIndex is '.' or ',' or '/' or ':' or 'π' or '،' or '‌' or '٫';
+                        if (isAfterNumber && isBeforeNumber && isNumberSeparatorCharacter)
+                        {
+                            LtrTextHolder.Add(characterAtThisIndex);
+                            continue;
+                        }
+                        
                         if (isBeforeRTLCharacter && isAfterRTLCharacter ||
                             isAfterWhiteSpace && isSpecialPunctuation ||
                             isBeforeWhiteSpace && isAfterRTLCharacter ||
