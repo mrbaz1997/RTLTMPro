@@ -31,7 +31,7 @@ namespace RTLTMPro
         /// <summary>
         ///     Fixes the flow of the text.
         /// </summary>
-        public static void Fix(FastStringBuilder input, FastStringBuilder output, bool farsi, bool fixTextTags, bool preserveNumbers)
+        public static void Fix(FastStringBuilder input, FastStringBuilder output, AramaicScript aramaicScript, bool fixTextTags, bool preserveNumbers)
         {
             // Some texts like tags, English words and numbers need to be displayed in their original order.
             // This list keeps the characters that their order should be reserved and streams reserved texts into final letters.
@@ -147,8 +147,8 @@ namespace RTLTMPro
                 {
                     bool isAfterEnglishChar = Char32Utils.IsEnglishLetter(previousCharacter);
                     bool isBeforeEnglishChar = Char32Utils.IsEnglishLetter(nextCharacter);
-                    bool isAfterNumber = Char32Utils.IsNumber(previousCharacter, preserveNumbers, farsi);
-                    bool isBeforeNumber = Char32Utils.IsNumber(nextCharacter, preserveNumbers, farsi);
+                    bool isAfterNumber = Char32Utils.IsNumber(previousCharacter, preserveNumbers, aramaicScript);
+                    bool isBeforeNumber = Char32Utils.IsNumber(nextCharacter, preserveNumbers, aramaicScript);
                     bool isAfterSymbol = Char32Utils.IsSymbol(previousCharacter);
                     bool isBeforeSymbol = Char32Utils.IsSymbol(nextCharacter);
 
@@ -164,7 +164,7 @@ namespace RTLTMPro
                 }
 
                 if (Char32Utils.IsEnglishLetter(characterAtThisIndex) ||
-                    Char32Utils.IsNumber(characterAtThisIndex, preserveNumbers, farsi))
+                    Char32Utils.IsNumber(characterAtThisIndex, preserveNumbers, aramaicScript))
                 {
                     LtrTextHolder.Add(characterAtThisIndex);
                     continue;

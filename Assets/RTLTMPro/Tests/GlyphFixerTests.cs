@@ -38,7 +38,7 @@ namespace RTLTMPro.Tests
             var text = GetEnglishNumbers();
             var expected = GetFarsiNumbers();
 
-            GlyphFixer.FixNumbers(text, true);
+            GlyphFixer.FixNumbers(text, AramaicScript.Persian);
 
             Assert.AreEqual(expected.ToString(), text.ToString());
         }
@@ -49,7 +49,7 @@ namespace RTLTMPro.Tests
             var text = GetEnglishNumbers();
             var expected = GetHinduNumbers();
 
-            GlyphFixer.FixNumbers(text, false);
+            GlyphFixer.FixNumbers(text, AramaicScript.Arabic);
 
             Assert.AreEqual(expected.ToString(), text.ToString());
         }
@@ -60,7 +60,7 @@ namespace RTLTMPro.Tests
             var text = GetEnglishNumbers();
             var output = new FastStringBuilder(10);
 
-            GlyphFixer.Fix(text, output, false, true, false);
+            GlyphFixer.Fix(text, output, false, AramaicScript.Persian, false);
 
             Assert.AreEqual(GetFarsiNumbers().ToString(), output.ToString());
         }
@@ -71,7 +71,7 @@ namespace RTLTMPro.Tests
             var text = GetEnglishNumbers();
             var output = new FastStringBuilder(10);
 
-            GlyphFixer.Fix(text, output, false, false, false);
+            GlyphFixer.Fix(text, output, false, AramaicScript.Arabic, false);
 
             Assert.AreEqual(GetHinduNumbers().ToString(), output.ToString());
         }
@@ -82,7 +82,7 @@ namespace RTLTMPro.Tests
             var text = GetEnglishNumbers();
             var output = new FastStringBuilder(10);
 
-            GlyphFixer.Fix(text, output, true, false, false);
+            GlyphFixer.Fix(text, output, true, AramaicScript.Arabic, false);
 
             Assert.AreEqual(text.ToString(), output.ToString());
         }
@@ -93,7 +93,7 @@ namespace RTLTMPro.Tests
             var text = new FastStringBuilder(10);
             text.Append((char) ArabicGeneralLetters.Yeh);
 
-            GlyphFixer.FixYah(text, true);
+            GlyphFixer.FixYah(text, AramaicScript.Persian);
 
             Assert.AreEqual(((char) ArabicGeneralLetters.FarsiYeh).ToString(), text.ToString());
         }

@@ -48,6 +48,12 @@ namespace RTLTMPro
         Jeh = 0xFB8A,
         Keheh = 0xFB8E, // persian kaf
         Gaf = 0xFB92,
-	
+        
+        Ve = 0xFB6A,
+        Oe = 0xFBD9,
+        KurdishYeh = 0xE003, // this and belows are special Kurdish isolated letters
+        KurdishReh = 0xE000,
+        KurdishLam = 0xE006,
+        Ae = 0xDFFF
     }
 }

@@ -22,9 +22,9 @@ namespace RTLTMPro {
             return TextUtils.IsEnglishLetter((char)ch);
         }
 
-        public static bool IsNumber(int ch, bool preserveNumbers, bool farsi) {
+        public static bool IsNumber(int ch, bool preserveNumbers, AramaicScript aramaicScript) {
             if (!IsUnicode16Char(ch)) return false;
-            return TextUtils.IsNumber((char)ch, preserveNumbers, farsi);
+            return TextUtils.IsNumber((char)ch, preserveNumbers, aramaicScript);
         }
 
         // Wrappers for System.Char (char) methods

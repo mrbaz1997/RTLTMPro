@@ -42,12 +42,12 @@ namespace RTLTMPro
             throw new NotImplementedException();
         }
 
-        public static bool IsNumber(char ch, bool preserveNumbers, bool farsi)
+        public static bool IsNumber(char ch, bool preserveNumbers, AramaicScript aramaicScript)
         {
             if (preserveNumbers)
                 return IsEnglishNumber(ch);
 
-            if (farsi)
+            if (aramaicScript is AramaicScript.Persian)
                 return IsFarsiNumber(ch);
 
             return IsHinduNumber(ch);
@@ -82,7 +82,8 @@ namespace RTLTMPro
                 || ch >= ArabicExtendedABlockLow && ch <= ArabicExtendedABlockHigh
                 || ch >= ArabicExtendedBBlockLow && ch <= ArabicExtendedBBlockHigh
                 || ch >= ArabicPresentationFormsABlockLow && ch <= ArabicPresentationFormsABlockHigh
-                || ch >= ArabicPresentationFormsBBlockLow && ch <= ArabicPresentationFormsBBlockHigh;
+                || ch >= ArabicPresentationFormsBBlockLow && ch <= ArabicPresentationFormsBBlockHigh
+                || IsSpecialKurdishLetter(ch);
         }
 
         /// <summary>
@@ -147,10 +148,25 @@ namespace RTLTMPro
                 case (char)ArabicGeneralLetters.Jeh:
                 case (char)ArabicGeneralLetters.Keheh:
                 case (char)ArabicGeneralLetters.Gaf:
+                case (char)ArabicGeneralLetters.KurdishReh:
+                case (char)ArabicGeneralLetters.KurdishLam:
+                case (char)ArabicGeneralLetters.Ve:
+                case (char)ArabicGeneralLetters.KurdishYeh:
+                case (char)ArabicGeneralLetters.Oe:
+                case (char)ArabicGeneralLetters.Ae:
                     return true;
             }
 
             return false;
+        }
+        
+        public static bool IsSpecialKurdishLetter(char converted)
+        {
+            return (ArabicIsolatedLetters)converted 
+                is ArabicIsolatedLetters.KurdishYeh 
+                or ArabicIsolatedLetters.KurdishReh
+                or ArabicIsolatedLetters.KurdishLam
+                or ArabicIsolatedLetters.Ae;
         }
         
         /// <summary>
