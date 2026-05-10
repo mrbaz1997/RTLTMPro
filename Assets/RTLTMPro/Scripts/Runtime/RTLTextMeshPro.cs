@@ -25,11 +25,14 @@ namespace RTLTMPro
             }
         }
 
-        public string OriginalText => originalText;
+        public string OriginalText
+        {
+            get { return originalText; }
+        }
 
         public bool PreserveNumbers
         {
-            get => preserveNumbers;
+            get { return preserveNumbers; }
             set
             {
                 if (preserveNumbers == value)
@@ -42,7 +45,7 @@ namespace RTLTMPro
 
         public AramaicScript AramaicScript
         {
-            get => aramaicScript;
+            get { return aramaicScript;}
             set
             {
                 if (aramaicScript == value)
@@ -55,7 +58,7 @@ namespace RTLTMPro
 
         public bool FixTags
         {
-            get => fixTags;
+            get { return fixTags; }
             set
             {
                 if (fixTags == value)
@@ -68,7 +71,7 @@ namespace RTLTMPro
 
         public bool ForceFix
         {
-            get => forceFix;
+            get  { return forceFix; }
             set
             {
                 if (forceFix == value)
@@ -112,8 +115,7 @@ namespace RTLTMPro
             {
                 isRightToLeftText = false;
                 base.text = originalText;
-            }
-            else
+            }else
             {
                 isRightToLeftText = true;
                 base.text = GetFixedText(originalText);

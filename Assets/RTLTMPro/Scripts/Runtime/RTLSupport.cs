@@ -1,10 +1,6 @@
 ﻿// ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
 
-using System;
-using TMPro;
-using UnityEngine;
-
 namespace RTLTMPro
 {
     public static class RTLSupport
@@ -35,7 +31,7 @@ namespace RTLTMPro
             AramaicScript aramaicScript = AramaicScript.Persian,
             bool fixTextTags = true,
             bool preserveNumbers = false,
-           Func<char, bool> checkSupportChar = null)
+           System.Func<char, bool> checkSupportChar = null)
         {
             inputBuilder.SetValue(input);
             TashkeelFixer.RemoveTashkeel(inputBuilder);
@@ -46,9 +42,7 @@ namespace RTLTMPro
             
             TashkeelFixer.FixShaddaCombinations(glyphFixerOutput);
             // Fix flow of the text and put the result in FinalLetters field
-            Debug.Log("before LigatureFixer: " + glyphFixerOutput);
             LigatureFixer.Fix(glyphFixerOutput, output, aramaicScript, fixTextTags, preserveNumbers);
-            Debug.Log("after LigatureFixer: " + output);
             if (fixTextTags)
             {
                 RichTextFixer.Fix(output);

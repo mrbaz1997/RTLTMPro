@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
-using UnityEngine.TextCore.Text;
 
 namespace RTLTMPro
 {
@@ -58,7 +56,7 @@ namespace RTLTMPro
                 if (iChar == (int)ArabicGeneralLetters.Lam && i < input.Length - 1 && HandleSpecialLam(input, output, i) ||
                     iChar == (int)ArabicGeneralLetters.KurdishLam && i < input.Length - 1 && HandleSpecialKurdishLam(input, output, i))
                 {
-                    FixLamForm(input, output, ref i);
+                    FixLamForm(input, output, ref i);   // For special Lam Letter connections.
                 }
                 else if (TextUtils.IsGlyphFixedArabicCharacter((char)iChar))
                 {
@@ -72,7 +70,7 @@ namespace RTLTMPro
                     bool isLeading = IsLeadingLetter(input, i);
                     char result;
 
-                    if (aramaicScript == AramaicScript.Kurdish && TryGetKurdishException(converted, isMiddle, isFinishing, isLeading, iChar, checkSupportChar, out char kurdishChar))
+                    if (aramaicScript == AramaicScript.Kurdish && TryGetKurdishException(converted, isMiddle, isFinishing, isLeading, out char kurdishChar))
                     {
                         result = kurdishChar;
                     }
@@ -101,7 +99,7 @@ namespace RTLTMPro
         /// <summary>
         /// Handles specific shaping exceptions for Kurdish characters that break the standard offset rule.
         /// </summary>
-        private static bool TryGetKurdishException(char converted, bool isMiddle, bool isFinishing, bool isLeading, int iChar, Func<char, bool> checkSupportChar, out char result)
+        private static bool TryGetKurdishException(char converted, bool isMiddle, bool isFinishing, bool isLeading, out char result)
         {
             bool isKurdishHa = converted is (char)0x0647 or (char)0x06BE;
             bool isKurdishAe = converted == (char)0x06D5;

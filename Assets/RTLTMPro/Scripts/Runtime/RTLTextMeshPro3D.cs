@@ -1,5 +1,4 @@
-﻿using System.Runtime.Serialization;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace RTLTMPro
@@ -46,7 +45,7 @@ namespace RTLTMPro
 
         public AramaicScript AramaicScript
         {
-            get => aramaicScript;
+            get { return aramaicScript; }
             set
             {
                 if (aramaicScript == value)
