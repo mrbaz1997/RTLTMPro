@@ -85,7 +85,7 @@ namespace RTLTMPro
         [SerializeField] protected bool preserveNumbers;
 
         [SerializeField, HideInInspector] 
-        private bool farsi;
+        private bool farsi = true;
         // A flag to ensure we only migrate the data once per component.
         [SerializeField, HideInInspector]
         private bool hasMigratedToEnum = false;
